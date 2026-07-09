@@ -14,7 +14,7 @@ export interface AppSettings {
 }
 
 const DEFAULTS: AppSettings = {
-  currency: "USD",
+  currency: "INR",
   companyName: "InsightIQ",
 };
 const STORAGE_KEY = "insightiq:settings";

@@ -7,13 +7,14 @@ import {
   FileText,
   Settings as SettingsIcon,
   BarChart3,
+  type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/utils/cn";
 
 interface NavItem {
   to: string;
   label: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: LucideIcon;
   testId: string;
 }
 
