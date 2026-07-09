@@ -49,10 +49,20 @@ export const api = {
     search?: string;
     sort_by?: string;
     sort_dir?: "asc" | "desc";
+    filters?: Record<string, string>;
   } = {}) => {
     const qs = new URLSearchParams();
     Object.entries(params).forEach(([k, v]) => {
-      if (v !== undefined && v !== "") qs.set(k, String(v));
+      if (v === undefined || v === "") return;
+      if (k === "filters") {
+        const filters = v as Record<string, string>;
+        const active = Object.fromEntries(
+          Object.entries(filters).filter(([, val]) => val !== undefined && val !== "")
+        );
+        if (Object.keys(active).length > 0) qs.set("filters", JSON.stringify(active));
+        return;
+      }
+      qs.set(k, String(v));
     });
     return fetch(url(`/api/analytics?${qs.toString()}`)).then((r) =>
       handle<AnalyticsResponse>(r)

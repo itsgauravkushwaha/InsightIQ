@@ -79,15 +79,34 @@ export interface DatasetMeta {
   is_sample: boolean;
 }
 
+export interface ColumnMeta {
+  name: string;
+  dtype: "date" | "numeric" | "category" | "text";
+  missing: number;
+  unique: number;
+}
+
+export interface AnalyticsSummary {
+  total_rows: number;
+  total_columns: number;
+  numeric_columns: number;
+  categorical_columns: number;
+  date_columns: number;
+  text_columns: number;
+  missing_values: number;
+  duplicate_rows: number;
+}
+
 export interface AnalyticsRow {
   [key: string]: string | number | null;
 }
 
 export interface AnalyticsResponse {
   dataset: DatasetMeta;
-  columns: string[];
+  columns: ColumnMeta[];
   rows: AnalyticsRow[];
   total: number;
+  summary: AnalyticsSummary;
 }
 
 export interface InsightsResponse {

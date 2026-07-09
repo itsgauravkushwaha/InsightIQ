@@ -81,11 +81,30 @@ class DashboardResponse(BaseModel):
     insights: ExecutiveInsights = Field(default_factory=ExecutiveInsights)
 
 
+class ColumnMeta(BaseModel):
+    name: str
+    dtype: Literal["date", "numeric", "category", "text"]
+    missing: int = 0
+    unique: int = 0
+
+
+class AnalyticsSummary(BaseModel):
+    total_rows: int
+    total_columns: int
+    numeric_columns: int
+    categorical_columns: int
+    date_columns: int
+    text_columns: int
+    missing_values: int
+    duplicate_rows: int
+
+
 class AnalyticsResponse(BaseModel):
     dataset: DatasetMeta
-    columns: List[str]
+    columns: List[ColumnMeta]
     rows: List[dict]
     total: int
+    summary: AnalyticsSummary
 
 
 class InsightItem(BaseModel):
