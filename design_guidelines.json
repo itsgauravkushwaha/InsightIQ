@@ -1,0 +1,157 @@
+{
+  "theme": {
+    "default": "light",
+    "supported": ["light", "dark"],
+    "archetype": "Swiss & High-Contrast mixed with Performance Pro",
+    "description": "Inspired by Linear's strict hierarchy and Power BI's data density. Clean, authoritative, and data-driven."
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Outfit",
+      "body": "IBM Plex Sans",
+      "mono": "JetBrains Mono"
+    },
+    "rules": [
+      "No generic sans (Inter, Roboto) for headings.",
+      "Headlines > 32px must use tracking-tight or tracking-tighter.",
+      "Overlines/Labels must be uppercase, tiny, with tracking-[0.2em].",
+      "Line height: tight for headers (leading-none), loose for body (leading-relaxed)."
+    ],
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl",
+      "h3": "text-xl sm:text-2xl",
+      "h4": "text-lg sm:text-xl",
+      "body": "text-base sm:text-sm",
+      "small": "text-sm",
+      "xs": "text-xs"
+    }
+  },
+  "colors": {
+    "primary": {
+      "light": "#2563EB",
+      "dark": "#3B82F6"
+    },
+    "background": {
+      "light": "#FAFAFA",
+      "dark": "#0A0A0A"
+    },
+    "surface": {
+      "light": "#FFFFFF",
+      "dark": "#121212"
+    },
+    "border": {
+      "light": "rgba(0,0,0,0.08)",
+      "dark": "rgba(255,255,255,0.12)"
+    },
+    "text": {
+      "light": {
+        "primary": "#111827",
+        "secondary": "#4B5563"
+      },
+      "dark": {
+        "primary": "#F9FAFB",
+        "secondary": "#9CA3AF"
+      }
+    },
+    "rules": [
+      "Never use pure #000000 or #808080. Always tint neutrals slightly.",
+      "Ensure text meets APCA/WCAG contrast ratios.",
+      "Always explicitly set text color on hover (e.g., hover:bg-blue-600 hover:text-white).",
+      "No teal green/blue for dashboards (FORBIDDEN_COLOR: #1B93A4)."
+    ]
+  },
+  "layouts": {
+    "spacing_system": "Strict 4px/8px base unit. Generous spacing (p-8 to p-12) between sections.",
+    "dashboard_grid": {
+      "style": "High Density Grid (MODE B)",
+      "base": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4",
+      "gap": "gap-4 md:gap-6",
+      "rules": [
+        "Summary cards: col-span-1",
+        "Primary Data/Main charts: col-span-2 or col-span-3",
+        "Every pixel utilized, no jagged bottoms. Use h-full."
+      ]
+    },
+    "landing_grid": {
+      "style": "Bento Grid (MODE A)",
+      "base": "grid-cols-1 md:grid-cols-8 lg:grid-cols-12",
+      "gap": "gap-8 lg:gap-12"
+    },
+    "surfaces": [
+      "Headers: Use Crystal Glass (backdrop-blur-xl bg-white/70 or bg-black/60) if scrolling, or Solid if fixed.",
+      "CRITICAL: DO NOT use complete `transparent` background in header, overlays, any surface that has content under it. Example: Dropdown with transparent background.",
+      "Cards: Smooth/Subtle roundness, max 8px border-radius. Avoid over-shadowing. In light mode, flat background, 1px subtle border."
+    ]
+  },
+  "motion": {
+    "rules": [
+      "Micro-interactions for all hover states (buttons, cards, rows).",
+      "Avoid universal transitions (no 'transition-all'). Target specific properties (e.g., 'transition-colors transition-transform duration-200').",
+      "Dashboards need minimal animation (staggered list entrance, subtle tooltips)."
+    ]
+  },
+  "components": {
+    "library": "shadcn/ui customized + standard HTML/Tailwind for Landing.",
+    "rules": [
+      "Do NOT use HTML for advanced interactions (use Shadcn Select, Dialog, Calendar).",
+      "Toast notifications: Use Sonner.",
+      "Charts: Use Recharts or Shadcn Chart components. Ensure color-blind friendly palettes.",
+      "Table: TanStack Table for data heavy views."
+    ],
+    "icons": {
+      "library": "lucide-react",
+      "installation": "already installed"
+    }
+  },
+  "accessibility_and_testing": {
+    "rules": [
+      "All interactive and key informational elements MUST include a data-testid attribute.",
+      "Convention: kebab-case, role-based (e.g., data-testid='upload-csv-button').",
+      "Respect prefers-reduced-motion."
+    ]
+  },
+  "image_urls": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1644088379091-d574269d422f",
+      "description": "Abstract data visualization network lines for tech background"
+    },
+    "dashboard_preview": {
+      "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+      "description": "Modern analytics dashboard on laptop screen"
+    },
+    "about_team": {
+      "url": "https://images.unsplash.com/photo-1568992687947-868a62a9f521",
+      "description": "Modern business team meeting, professional setting"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Start by setting up the theme configuration (Tailwind setup, colors, fonts).",
+    "Ensure all components are strictly written in .js/.jsx extensions, NOT .ts/.tsx.",
+    "Create the overall layout structure: Sidebar navigation + Main content area.",
+    "Implement the landing page with Custom HTML/Tailwind and Bento grid layouts.",
+    "Implement the Dashboard with Shadcn components, Recharts for Sales/Category/Region visuals, and High Density Grid.",
+    "Build the Upload view with drag-and-drop functionality and preview capabilities.",
+    "Develop the Analytics view using TanStack table (sort, filter, paginate).",
+    "Develop the AI Insights page, mock the backend generation, display sections clearly (Exec Summary, Risks, etc.).",
+    "Never use Bootstrap. Use strict Vite + React + Tailwind + Lucide Icons stack."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Create distinctive frontends that surprise and delight, avoiding generic 'AI slop' aesthetics.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts. DO NOT center align the app container (.App { text-align: left; }).",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use modern button styles (pill-shaped or sharp) with interaction animations & color relevant to the app style.",
+    "NEVER use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Prioritize using pre-existing components from src/components/ui when applicable."
+  ],
+  "GENERAL UI UX DESIGN GUIDELINES": [
+    "Prioritize typography and whitespace. Good design feels spacious.",
+    "Ensure high contrast for readability.",
+    "Avoid unnecessary dividers. Use space instead of lines to group elements.",
+    "Align elements logically. Avoid jagged layouts.",
+    "Make click targets large enough (min 44x44px for touch)."
+  ]
+}
