@@ -57,8 +57,8 @@ class TopProduct(BaseModel):
 class DashboardResponse(BaseModel):
     dataset: DatasetMeta
     kpi: KpiSummary
-    trend: List[TrendPoint] = Field(default_factory=list)
-    categories: List[CategoryBreakdown] = Field(default_factory=list)
+    salesTrend: List[TrendPoint] = Field(default_factory=list)
+    categoryRevenue: List[CategoryBreakdown] = Field(default_factory=list)
     regions: List[RegionBreakdown] = Field(default_factory=list)
     top_products: List[TopProduct] = Field(default_factory=list)
 

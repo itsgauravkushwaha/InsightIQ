@@ -39,8 +39,8 @@ export interface TopProduct {
 export interface DashboardResponse {
   dataset: DatasetMeta;
   kpi: KpiSummary;
-  trend: TrendPoint[];
-  categories: CategoryBreakdown[];
+  salesTrend: TrendPoint[];
+  categoryRevenue: CategoryBreakdown[];
   regions: RegionBreakdown[];
   top_products: TopProduct[];
 }
