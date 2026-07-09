@@ -61,6 +61,14 @@ export interface DashboardResponse {
   regions: RegionBreakdown[];
   topProducts: TopProduct[];
   filters: DashboardFilterOptions;
+  insights: ExecutiveInsights;
+}
+
+export interface ExecutiveInsights {
+  executive_summary: string[];
+  risks: string[];
+  opportunities: string[];
+  recommendations: string[];
 }
 
 export interface DatasetMeta {

@@ -8,6 +8,7 @@ import SalesTrendChart from "@/components/charts/SalesTrendChart";
 import CategoryRevenueChart from "@/components/charts/CategoryRevenueChart";
 import FilterBar from "@/components/filters/FilterBar";
 import TopProductsTable from "@/components/tables/TopProductsTable";
+import InsightsSection from "@/components/insights/InsightsSection";
 import { api } from "@/services/api";
 import { useSettings } from "@/hooks/useSettings";
 import { formatCurrency, formatNumber } from "@/utils/format";
@@ -84,6 +85,10 @@ export default function Dashboard() {
   const trend = useMemo(() => data?.salesTrend ?? [], [data]);
   const categories = useMemo(() => data?.categoryRevenue ?? [], [data]);
   const topProducts = useMemo(() => data?.topProducts ?? [], [data]);
+  const insights = useMemo(
+    () => data?.insights ?? { executive_summary: [], risks: [], opportunities: [], recommendations: [] },
+    [data]
+  );
 
   const patchFilters = useCallback(
     (patch: Partial<DashboardFilters>) => setFilters((f) => ({ ...f, ...patch })),
@@ -203,6 +208,9 @@ export default function Dashboard() {
             />
           </CardBody>
         </Card>
+
+        {/* Executive Insights (rule-based, no LLM) */}
+        <InsightsSection insights={insights} />
       </div>
     </div>
   );

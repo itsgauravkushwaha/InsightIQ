@@ -63,6 +63,13 @@ class DashboardFilterOptions(BaseModel):
     date_max: Optional[str] = None
 
 
+class ExecutiveInsights(BaseModel):
+    executive_summary: List[str] = Field(default_factory=list)
+    risks: List[str] = Field(default_factory=list)
+    opportunities: List[str] = Field(default_factory=list)
+    recommendations: List[str] = Field(default_factory=list)
+
+
 class DashboardResponse(BaseModel):
     dataset: DatasetMeta
     kpi: KpiSummary
@@ -71,6 +78,7 @@ class DashboardResponse(BaseModel):
     regions: List[RegionBreakdown] = Field(default_factory=list)
     topProducts: List[TopProduct] = Field(default_factory=list)
     filters: DashboardFilterOptions = Field(default_factory=DashboardFilterOptions)
+    insights: ExecutiveInsights = Field(default_factory=ExecutiveInsights)
 
 
 class AnalyticsResponse(BaseModel):
