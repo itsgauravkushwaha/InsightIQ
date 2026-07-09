@@ -33,7 +33,24 @@ export interface TopProduct {
   product: string;
   category: string;
   revenue: number;
+  profit: number;
   quantity: number;
+}
+
+export interface DashboardFilterOptions {
+  regions: string[];
+  categories: string[];
+  segments: string[];
+  date_min: string | null;
+  date_max: string | null;
+}
+
+export interface DashboardFilters {
+  date_from?: string;
+  date_to?: string;
+  region?: string;
+  category?: string;
+  segment?: string;
 }
 
 export interface DashboardResponse {
@@ -42,7 +59,8 @@ export interface DashboardResponse {
   salesTrend: TrendPoint[];
   categoryRevenue: CategoryBreakdown[];
   regions: RegionBreakdown[];
-  top_products: TopProduct[];
+  topProducts: TopProduct[];
+  filters: DashboardFilterOptions;
 }
 
 export interface DatasetMeta {

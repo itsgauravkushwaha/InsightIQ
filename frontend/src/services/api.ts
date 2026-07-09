@@ -34,8 +34,14 @@ export const api = {
   getDataset: () =>
     fetch(url("/api/dataset")).then((r) => handle<DatasetMeta>(r)),
 
-  getDashboard: () =>
-    fetch(url("/api/dashboard")).then((r) => handle<DashboardResponse>(r)),
+  getDashboard: (filters: import("@/types").DashboardFilters = {}) => {
+    const qs = new URLSearchParams();
+    Object.entries(filters).forEach(([k, v]) => {
+      if (v !== undefined && v !== "") qs.set(k, String(v));
+    });
+    const suffix = qs.toString() ? `?${qs.toString()}` : "";
+    return fetch(url(`/api/dashboard${suffix}`)).then((r) => handle<DashboardResponse>(r));
+  },
 
   getAnalytics: (params: {
     page?: number;

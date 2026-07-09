@@ -51,7 +51,16 @@ class TopProduct(BaseModel):
     product: str
     category: str
     revenue: float
+    profit: float
     quantity: int
+
+
+class DashboardFilterOptions(BaseModel):
+    regions: List[str] = Field(default_factory=list)
+    categories: List[str] = Field(default_factory=list)
+    segments: List[str] = Field(default_factory=list)
+    date_min: Optional[str] = None
+    date_max: Optional[str] = None
 
 
 class DashboardResponse(BaseModel):
@@ -60,7 +69,8 @@ class DashboardResponse(BaseModel):
     salesTrend: List[TrendPoint] = Field(default_factory=list)
     categoryRevenue: List[CategoryBreakdown] = Field(default_factory=list)
     regions: List[RegionBreakdown] = Field(default_factory=list)
-    top_products: List[TopProduct] = Field(default_factory=list)
+    topProducts: List[TopProduct] = Field(default_factory=list)
+    filters: DashboardFilterOptions = Field(default_factory=DashboardFilterOptions)
 
 
 class AnalyticsResponse(BaseModel):
