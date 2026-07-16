@@ -1,3 +1,5 @@
+Live Link: https://insight-iq-one.vercel.app/
+
 # InsightIQ
 
 A production-ready, database-free analytics workspace for CSV / Excel files.
